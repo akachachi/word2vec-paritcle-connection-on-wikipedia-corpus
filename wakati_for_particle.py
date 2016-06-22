@@ -8,8 +8,7 @@ def wakati_for_particle(text):
     
     """
     今のnodeと次のnodeをみて，
-    次のnodeが助詞なら　今と次の語をつなげて　次のnodeへ．
-    今のnodeが助詞なら　今と次の語をつなげて　次の次のnodeへ．
+    助詞なら　今と次の語をつなげて　次のnodeへ．
     """
     wakati_txt = ""
     try:
@@ -32,8 +31,15 @@ def wakati_for_particle(text):
     return wakati_txt
 
 
-
-
-
 if __name__ == '__main__':
-    wakati_for_particle("中居正広のタイトルはキンタマ")
+    f = open("jawiki.txt", "r")
+
+    text = ""
+    for row in f:
+        text += wakati_for_particle(row)
+
+    f.close()
+
+    f = open("jawikisep.txt", "w")
+    f.write(text)
+    f.close()
